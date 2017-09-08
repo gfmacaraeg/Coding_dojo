@@ -1,0 +1,8 @@
+<a href="/logout" data-method="delete">Logout</a>
+<a href="/events">Event Dashboard</a>
+
+<h1><%= @user.first_name.titleize %>'s Profile</h1>
+
+<p>Name: <%= @user.first_name.titleize %>  <%= @user.last_name.titleize %></p>
+<p>Email: <%= @user.email %></p>
+<p>Location: <%= @user.location.city.titleize %>, <%= @user.location.state %></p>

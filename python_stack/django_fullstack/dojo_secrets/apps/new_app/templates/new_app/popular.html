@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dojo Site</title>
+	  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<form action="/logout" method="post">
+		{% csrf_token %}
+		<input type="submit" value="Logout">
+	</form>
+
+	<!-- <h1>Hello, {{first_name}}</h1> -->
+	<h2>Most Popular Secrets...                 <a href="/secrets/regular">Back</a></h2>
+	{%for i in post%}
+	<p>{{i.content}}  ({{i.dateage}}) {{i.num_likes}} likes
+	{{i.likes}}
+<!-- 	if request.session.id in liked_posts  -->
+	{%if request.session.user == i.userid%}
+	<span style="font-weight: bold">You posted this</span> <a href="/delete/{{i.id}}">Delete</a>
+		
+	{%else%}
+		{%if i.id in liked_posts%}
+			<span id="liked">You liked this post</span>
+			{%else%}
+			 <a href="/like/{{i.id}}/popular">Like</a>
+		{%endif%}
+		 </p>
+	{%endif%}
+
+	{%endfor%}
+
+
+
+
+
+
+
+</body>
+</html>

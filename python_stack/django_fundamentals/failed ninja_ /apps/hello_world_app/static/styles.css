@@ -1,0 +1,57 @@
+#currgold{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 30px;
+}
+/*#goldout{
+	vertical-align: top;
+	margin-top: 15px;
+	display: inline-block;
+}*/
+.main{
+	display: inline-block;
+	background: grey;
+	height: 200px;
+	width: 200px;
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-left: 30px;
+}
+
+
+
+textarea{
+	height: 200px;
+	width: 970px;
+	margin-left: 30px;
+}
+
+.type{
+	text-align: center;
+	font-size: 20px;
+}
+.earn{
+	text-align: center;
+}
+
+.sub{
+	margin-left: 60px;
+	margin-top: 20px;
+	font-size: 20px;
+	width: 100px;
+}
+#green{
+	color:green;
+}
+#red{
+	color: red;
+}
+#textarea{
+	height: 200px;
+	width: 970px;
+	margin-left: 30px;
+	border-style: solid;
+	/*background: grey;*/
+	overflow: scroll;
+	margin-top: 20px;
+}

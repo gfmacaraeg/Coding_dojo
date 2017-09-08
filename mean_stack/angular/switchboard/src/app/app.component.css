@@ -1,0 +1,16 @@
+/* .ng-invalid { };
+.ng-valid { };
+.ng-untouched { };
+.ng-touched { };
+.ng-dirty { };
+.ng-pristine { }; */
+h1{
+        text-align: center;
+
+}
+button{
+        
+        height: 50px;
+        width: 50px;
+        display: inline-block;
+}

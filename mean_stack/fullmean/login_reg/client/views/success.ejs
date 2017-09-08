@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Success!</title>
+</head>
+<body>
+	<div>
+		<h1><%= user.name.first %> has successfully logged in!</h1>
+	</div>
+	<div>
+		<form action="/logout" method="post">
+			<input type="submit" value="Logout">
+		</form>
+	</div>
+</body>
+</html>

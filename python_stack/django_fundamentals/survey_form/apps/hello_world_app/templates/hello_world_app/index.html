@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
+
+</head>
+<body>
+	
+	<div id="wrapper">
+		<form action='/user' method='post'>
+			{% csrf_token %}
+			Your Name: <input id ='namebox' class="box" type='text' name='name'>
+			<br>Dojo Location: 
+			<select id ='locationbox' class="box" type='text' name='location'>
+				<option value="Dallas">Dallas</option>
+			    <option value="SanJose">SanJose</option>
+			    <option value="SanFrancisco">SanFrancisco</option>
+			    <option value="Seatle">Seatle</option>
+			</select>
+			<br>Favorite Language: 
+			<select id ='languagebox' class="box" type='text' name='language'>
+				<option value="Python">Python</option>
+			    <option value="JavaScript">JavaScript</option>
+			    <option value="C++">C++</option>
+			    <option value="Java">Java</option>
+			</select>
+			<br><br>Comment (Optional):<br>
+			<textarea name="comment" id="comment">Enter text here...</textarea>
+			<br>
+			<input id="submit" type='submit' value='submit'>
+		</form>
+	</div>
+	
+</body>
+</html>

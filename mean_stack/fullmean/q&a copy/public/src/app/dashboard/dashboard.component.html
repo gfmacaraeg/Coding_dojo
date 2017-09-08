@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <h1>Hi {{ currentUser.name }}! </h1>
+            <a href [routerLink]="['/new_question']">Add a Question</a>
+            <a href (click)="logout()">Logout</a>
+            <table [ngStyle]="{'border': '1px solid black'}">
+                <tr>
+                    <th>Question</th>
+                    <th>Answers</th>
+                    <th>Action</th>
+                </tr>
+                <tr *ngFor="let question of questions">
+                    <td>{{question.question}}</td>
+                    <td>{{question.answers.length}}</td>
+                    <td>
+                        <a href [routerLink]="['/question', question._id]">Show</a>
+                        <a href [routerLink]="['/answer', question._id]">Answer</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <router-outlet> </router-outlet>

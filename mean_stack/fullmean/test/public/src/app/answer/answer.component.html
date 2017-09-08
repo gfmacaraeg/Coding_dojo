@@ -1,0 +1,33 @@
+
+
+<div class="row">
+  <div class="col">
+<a href="">Home</a><span>           </span><a href="">logout</a><br><br> 
+<a routerLink="/question/{{messages._id}}">Go back to question</a>
+ 
+ <h1>{{messages.question}}</h1>
+<p>{{messages.description}}</p>
+
+  
+    <form (submit)="createAnswer()" #myform="ngForm">
+      <div class="form-group">
+        <label>Your Answer</label>
+        <input type="text" name="answer" class="form-control" 
+ 	[(ngModel)]="newAnswer.answer"
+ 	required
+       	minlength="5"
+       	#ans = "ngModel"
+        >
+        <span *ngIf="ans.errors && ans.errors.required && ans.touched" style="color:red">Question is required</span>
+        <span *ngIf="ans.errors && ans.errors.minlength  && ans.touched" style="color:red">Minimum length is 5 characters</span>
+        <br>
+        <label>Supporting details for your answer</label>
+        <input type="text" name="details" class="form-control"
+	[(ngModel)]="newAnswer.details"
+         >
+      </div>
+      <button [disabled]="!myform.valid" type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+
+</div>

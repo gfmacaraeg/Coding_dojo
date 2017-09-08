@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<!-- 	{{ url_for('static', filename='style.css') }} -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style2.css') }}">
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> -->
+</head>
+<body>
+	
+	<div id="wrapper">
+		<form action='/user' method='post'>
+			Your Name: <input id ='namebox' class="box" type='text' name='name'>
+			<br>Dojo Location: 
+			<select id ='locationbox' class="box" type='text' name='location'>
+				<option value="Dallas">Dallas</option>
+			    <option value="SanJose">SanJose</option>
+			    <option value="SanFrancisco">SanFrancisco</option>
+			    <option value="Seatle">Seatle</option>
+			</select>
+			<br>Favorite Language: 
+			<select id ='languagebox' class="box" type='text' name='language'>
+				<option value="Python">Python</option>
+			    <option value="JavaScript">JavaScript</option>
+			    <option value="C++">C++</option>
+			    <option value="Java">Java</option>
+			</select>
+			<br><br>Comment (Optional):<br>
+			<textarea name="comment" id="comment">Enter text here...</textarea>
+			<br>
+			<input id="submit" type='submit' value='submit'>
+		</form>
+		{% with messages = get_flashed_messages() %}
+			    {% if messages %}
+			      {% for message in messages %}
+			        <p>{{message}}</p>
+			      {% endfor %}
+			    {% endif %}
+			  {% endwith %}
+	</div>
+	
+</body>
+</html>

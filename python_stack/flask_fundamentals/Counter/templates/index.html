@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  Counter: {{ session['gold'] }}
+
+<form action = '/add2' method = 'post'>
+  <button>add 2</button>
+</form>
+<form action = '/reset_count' method = 'post'>
+  <button>reset</button>
+</form>
+</body>
+</html>

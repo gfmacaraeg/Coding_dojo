@@ -1,0 +1,23 @@
+#wrapper{
+	/*height: 500px;*/
+	width: 600px;
+	border-style: solid;
+	padding: 20px 20px 20px 20px;
+}
+#list{
+	height: 400px;
+	width: 300px;
+	border-style: solid;
+	display: inline-block;
+	margin-left: 10px;
+}
+h2{
+	text-align: center
+}
+button{
+	height: 25px;
+	width: 200px;
+	margin-left: 40px;
+	margin-bottom: 10px;
+	color: white;
+}

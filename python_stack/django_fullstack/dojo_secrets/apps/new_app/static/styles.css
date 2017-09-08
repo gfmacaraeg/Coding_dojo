@@ -1,0 +1,11 @@
+input{
+	display: block;
+}
+#liked{
+	color:red;
+	font-weight: bold;
+}
+
+#error{
+	color: red;
+}

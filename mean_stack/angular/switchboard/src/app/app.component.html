@@ -1,0 +1,6 @@
+<h1>Switchboard</h1>
+
+<div *ngFor="let i of arr; let idx = index" style="background-color:brown; display: inline-block; padding: 20px; margin-left:2px;">
+    <button (click)='dec(idx)' *ngIf="arr[idx]" style ="background-color:green">ON</button>
+    <button (click)='add(idx)' *ngIf="!arr[idx]" style ="background-color:red">OFF</button>
+</div> 

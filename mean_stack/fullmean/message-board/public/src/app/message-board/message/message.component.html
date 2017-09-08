@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col">
+    <p>{{ message.user.name }} says {{ message.message }}</p>
+  </div>
+</div>
+<div class="comments">
+  <app-comment *ngFor="let comment of message.comments" [comment]="comment"></app-comment>
+  <app-new-comment (updateMessageEvent)="updateMessage()" [message]="message"></app-new-comment>
+</div>

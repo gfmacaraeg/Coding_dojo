@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'style2.css' %}" media="screen" title="no title"  charset="utf-8">
+	<link rel="stylesheet" href="../../static/style2.css">
+</head>
+<body>
+	<div id="wrapper">
+	<h2>Are you sure you want to delete the following course?</h2>
+	<table>
+		{%for i in result%}
+		<tr><td>Name:</td> <td>{{i.name}} </td></tr>
+		<tr><td>Description:</td><td> {{i.content}}</td></tr>
+		
+	</table>
+	<form action="/">
+	<input id="no" type="submit" value="No">
+	</form>
+	<form action="/delete/{{i.id}}" method='post'>
+	{% csrf_token %}
+	<input id="red" type="submit" value="Yes I want to delete this">
+	</form>
+	{%endfor%}
+	</div>
+</body>
+</html>

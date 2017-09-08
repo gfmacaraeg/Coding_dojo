@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dojo Site</title>
+	  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	{%for i in id%}
+	<h1>Success! Welcome to DojoSite, {{i.first_name}}</h1>
+	{%endfor%}
+	<h2 style="color: green">Successfully registered (or logged in)!</h2>
+	<form action="/logout" method="post">
+		{% csrf_token %}
+		<input type="submit" value="Logout">
+	</form>
+
+</body>
+</html>

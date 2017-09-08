@@ -1,0 +1,21 @@
+
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+table, th,td {
+    border: 1px solid black;
+}
+#name{
+	width: 350px;
+}
+#description{
+	margin:20px;
+	width: 300px;
+	height: 100px;
+}
+#submit{
+	margin-left: 200px;
+	width: 200px;
+	font-size: 30px;
+}

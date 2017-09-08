@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <button id="someButton">This is Some Button</button>
+    <div id="result"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+	var button = document.getElementById("someButton")
+	// add a DOM eventListener to that variable.
+	button.addEventListener("click", whatToDoOnClick);
+	// here we define the whatToDoOnClick function
+	function whatToDoOnClick() {
+	  alert("Inside click")
+	  $.get("https://api.github.com/users/flip615", displayName)
+	function displayName(data) {
+	  console.log(data.login); 
+	  document.getElementById("result").innerHTML = data.login;
+	}
+	}
+    </script>
+  </body>
+</html>

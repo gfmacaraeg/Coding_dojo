@@ -1,0 +1,107 @@
+Set up django project:
+
+> == terminal command
+
+> cd {{django_project_location}}
+> pip freeze > requirements.txt
+> touch .gitignore
+
+Modify .gitignore:
+*.pyc
+venv/
+.DS_Store
+.idea
+
+Set up git (unless you've already set it up):
+> git init
+> git add . -A
+> git commit -m "initial commit"
+
+Create github repository, and link to local git track:
+> git remote add origin https://github.com/flip615/redditbot.git
+> git push origin master
+
+Create your AWS Instance (Refer to platform or videos for walkthrough)
+
+Connect to server through ssh command (Refer to 'Connect' button in AWS EC2 to get the correct ssh command)
+
+Inside of the AWS server:
+
+> sudo apt-get update
+> sudo apt-get install python-pip python-dev nginx git
+ #if prompted to select y or n
+ > y
+> sudo apt-get update
+> sudo pip install virtualenv
+
+> git clone {{GITUHUB URL}}
+> cd {{repoName}}
+> virtualenv venv
+> source venv/bin/activate
+> pip install -r requirements.txt
+> pip install django-extensions
+> pip install gunicorn
+
+> cd {{projectName}}
+> sudo vim settings.py
+
+Modifying settings:
+    DEBUG = False
+    ALLOWED_HOSTS = ['{{yourEC2.public.ip}}']
+    # add the line below to the bottom of the file
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+> cd .. #Go back to where your manage.py file is
+> python manage.py collectstatic
+> yes #say yes to overwriting existing files
+
+Test to see if gunicorn was installed correctly:
+> gunicorn --bind 0.0.0.0:8000 main.wsgi:application
+> ctrl+c #To exit
+
+DON'T FORGET THIS STEP
+> deactivate #stop the virtualenv
+
+Set up gunicorn:
+> sudo vim /etc/systemd/system/gunicorn.service
+
+Modify /etc/systemd/system/gunicorn.service:
+[Unit]
+Description=gunicorn daemon
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/{{repoName}}
+ExecStart=/home/ubuntu/{{repoName}}/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/{{repoName}}/{{projectName}}.sock {{projectName}}.wsgi:application
+[Install]
+WantedBy=multi-user.target
+
+Enable/Restart Gunicorn (if any changes are made to gunicorn.service file, then these commands will need to be run again)
+> sudo systemctl daemon-reload
+> sudo systemctl start gunicorn
+> sudo systemctl enable gunicorn
+
+Set up nginx:
+> sudo vim /etc/nginx/sites-available/{{projectName}}
+
+Modify /etc/nginx/sites-available/{{projectName}}:
+server {
+  listen 80;
+  server_name 52.55.23.12;
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location /static/ {
+      root /home/ubuntu/{{repoName}};
+  }
+  location / {
+      include proxy_params;
+      proxy_pass http://unix:/home/ubuntu/{{repoName}}/{{projectName}}.sock;
+  }
+}
+
+> sudo ln -s /etc/nginx/sites-available/{{projectName}} /etc/nginx/sites-enabled
+> sudo nginx -t #Test to make sure that nginx file setup correctly
+> sudo rm /etc/nginx/sites-enabled/default
+> sudo service nginx restart
+
+

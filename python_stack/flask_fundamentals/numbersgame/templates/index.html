@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<h1>Welcome to the Great Number Game!</h1>
+	<p>I am thinking of a number between 1 and 100</p>
+	<p>Take a guess!</p>
+	<br>
+		{% if result == "correct" %}
+	<div id="correct">
+		<p>Correct!</p>
+		<form action='/new' method="post">
+		<input id="corr" type="submit" value="Play again">
+		</form>
+	</div>
+		{%elif result == "high"%}
+	<div id="wrong"><p>Too High!</p></div>	
+	<form action='/random' method="post">
+		<input type="text" name="guess">
+		<input type="submit" name="Submit">
+	</form>
+		{%elif result == "low"%}
+	<div id="wrong"><p>Too Low!</p></div>
+	<form action='/random' method="post">
+		<input type="text" name="guess">
+		<input type="submit" name="Submit">
+	</form>
+		{%elif result == "wrong"%}
+	<div id="wrong"><p>Enter a number!</p></div>
+	<form action='/random' method="post">
+		<input type="text" name="guess">
+		<input type="submit" name="Submit">
+	</form>
+		{%else%}
+	<form action='/random' method="post">
+		<input type="text" name="guess">
+		<input type="submit" name="Submit">
+	</form>		
+		{%endif%}
+</body>
+</html>

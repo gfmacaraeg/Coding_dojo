@@ -1,0 +1,67 @@
+<a href="/logout" data-method="delete">Logout</a>
+<a href="/events">Event Dashboard</a>
+
+
+<h4><%= @event.name %></h4>
+
+<p>Host: <%= @event.user.first_name.titleize %> <%= @event.user.last_name.titleize %></p>
+<p>Date: <%= @event.date %></p>
+<p>Location: <%= @event.location.city.titleize %>, <%= @event.location.state %></p>
+<p>People who are joining the event: <%= @event.users.count %></p>
+
+<!-- Joining Users -->
+<% unless @event.users.empty? %>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% @event.users.each do |user| %>
+                    <td><%= user.first_name.titleize %> <%= user.last_name.titleize %></td>
+                    <td><%= user.location.city.titleize %></td>
+                    <td><%= user.location.state %></td>
+                <% end %>
+            </tr>
+        </tbody>
+    </table>
+<% else %>
+    <h4>No one is joining your event, sucka!</h4>
+<% end %>
+<!-- End Joining Users -->
+
+<!-- Comment Section -->
+<div>
+    <h5>Discussion about this event:</h5>
+    <% @event.comments.each do |comment| %>
+        <p><%= comment.user.first_name.titleize %>: <%= comment.content %></p>
+        <p>------------------</p>
+    <% end %>
+</div>
+<div class="col-3">
+    <h2>Add Comment</h2>
+    <form action="/comments" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+        <input type="hidden" name="event_id" value="<%= @event.id %>" />
+
+        <div class="form-group">
+            <textarea name="content" id="content" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </form>
+</div>
+
+<!-- End Comment Section -->
+
+
+
+
+
+
+
+

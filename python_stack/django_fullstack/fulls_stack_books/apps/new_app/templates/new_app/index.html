@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<h1>List of books!</h1>
+	<table>
+		<tr>
+			<th>id</th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Category</th>
+		</tr>
+		{%for i in books%}
+			<tr>
+				<td>
+				{{i.id}}
+				</td>
+				<td>
+				{{i.title}}
+				</td>
+				<td>
+				{{i.author}}
+				</td>
+				<td>
+				{{i.category}}
+				</td>
+			</tr>
+		{%endfor%}
+		</table>
+		<h1>Add a book</h1>
+		<form action="/newbook" method="post">
+		{% csrf_token %}
+			Title:<input id="title"type="text" name="title"><br>
+			Category:<input class="smaller" type="text" name="category">
+			Author:<input class="smaller" type="text" name="author"><br>
+			<input id="submit" type="submit" value="Submit">
+		</form>
+
+	
+</body>
+</html>

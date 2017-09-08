@@ -1,0 +1,26 @@
+<html>
+<body>
+    <h1>Students</h1>
+    <ul id="main">
+        <!-- this is empty-->
+    </ul> 
+<script>
+
+    function appendList(arr, id){
+        message = "<ul>";
+        for (var i = 0; i < arr.length; i++) {
+            name = arr[i];
+            console.log(name)
+            let newmessage = "<li>" + name + "</li>";
+            message += newmessage
+        }
+        // message = message + "</ul>"
+        console.log(message)
+        document.getElementById(id).innerHTML = message
+    };
+    let students = ["Jeff", "Jenny", "Javier", "Joslyn", "Joe", "Jane", "Django"];
+    let target_id = "main";
+    appendList(students, target_id);
+</script>   
+</body>
+</html>

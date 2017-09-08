@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Surprises:</h1>
+	<div id="contents">
+		{% for i in result %}
+		{{ i|safe }}
+		{% endfor %}
+	</div>
+</body>
+</html>

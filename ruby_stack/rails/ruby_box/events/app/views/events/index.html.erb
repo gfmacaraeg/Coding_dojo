@@ -1,0 +1,141 @@
+<h4>Welcome, <%= current_user.first_name.titleize %></h4>
+
+<a href="/logout" data-method="delete">Logout</a>
+<a href="/users/<%= current_user.id %>/edit">Edit My Profile</a>
+
+<!-- In state events -->
+<% if @in_state_events %>
+    <h5>Here are the events in your state:</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Host</th>
+                <th>Action/Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% @in_state_events.each do |event| %>
+                    <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+                    <td><%= event.date %></td>
+                    <td><%= event.location.city %></td>
+                    <td><%= event.user.first_name.titleize %></td>
+                    <td>
+                        <% if event.user == current_user %>
+                            <a href="/events/<%= event.id %>/edit">Edit</a>
+
+                            <a href="/events/<%= event.id %>" data-method="delete">Delete</a>
+                        <% else %>
+                            <% unless event.users.include? current_user %>
+                                <!-- Join Action -->
+                                <form action="/events/<%= event.id %>/user" method="post">
+                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                    <button class="btn btn-primary" type="submit">Join</button>
+                                </form>
+                                <!-- End Join Action -->
+                            <% else %>
+                                <!-- Cancel Action -->
+                                <span>Joining</span>
+                                <form action="/events/<%= event.id %>/user" method="post">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                                    <button class="btn btn-danger">Cancel</button>
+                                <!-- End Cancel Action -->
+                                </form>
+                            <% end %>
+                        <% end %>
+                    </td>
+
+                <% end %>
+            </tr>
+        </tbody>
+    </table>
+<% else %>
+    <h4>You state is not very popular with our service... get moar friends...</h4>
+<% end %>
+<!-- End In State Events -->
+
+<!-- Out of state events -->
+<% unless @out_of_state_events.empty? %>
+    <h5>Here are some of the events in other states:</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>State</th>
+                <th>Host</th>
+                <th>Action/Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% @out_of_state_events.each do |event| %>
+                    <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+                    <td><%= event.date %></td>
+                    <td><%= event.location.city %></td>
+                    <td><%= event.location.state %></td>
+                    <td><%= event.user.first_name.titleize %></td>
+                    <td>
+                        <% if event.user == current_user %>
+                            <a href="/events/<%= event.id %>/edit">Edit</a>
+
+                            <a href="/events/<%= event.id %>" data-method="delete">Delete</a>
+                        <% else %>
+                            <% unless event.users.include? current_user %>
+                                <!-- Join Action -->
+                                <form action="/events/<%= event.id %>/user" method="post">
+                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                    <button class="btn btn-primary" type="submit">Join</button>
+                                </form>
+                                <!-- End Join Action -->
+                            <% else %>
+                                <!-- Cancel Action -->
+                                <span>Joining</span>
+                                <form action="/events/<%= event.id %>/user" method="post">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                                    <button class="btn btn-danger">Cancel</button>
+                                <!-- End Cancel Action -->
+                                </form>
+                            <% end %>
+                        <% end %>
+                    </td>
+                <% end %>
+            </tr>
+        </tbody>
+    </table>
+<% else %>
+    <h4>You state is not very popular with our service... get moar friends...</h4>
+<% end %>
+
+<!-- Event Form -->
+<div class="col-5">
+    <h2>Add Event</h2>
+    <form action="/events" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="event[name]" id="name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" name="event[date]" id="date" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="city">Location:</label>
+            <input type="text" name="event[city]" id="city" class="form-control" />
+            <input type="text" name="event[state]" id="state" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Event</button>
+    </form>
+</div>
+<!-- End Event Form -->

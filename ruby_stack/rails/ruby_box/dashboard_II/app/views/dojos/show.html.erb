@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="display:inline-block">
+  <%= @dojo.branch %> Dojo
+</h1>
+<%= link_to 'Edit', edit_dojo_path(@dojo) %>
+
+<p>
+  <strong>Street:</strong>
+  <%= @dojo.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @dojo.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @dojo.state %>
+</p>
+
+<br>
+
+
+<br>
+
+<h2>Student Roster</h2>
+
+<table>
+	<thead>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Email</th>
+		<th>Actions</th>
+	</thead>
+	<tbody>
+	<% @student.each do |student| %>
+		<tr>
+			<td><%= student.first_name %></td>
+			<td><%= student.last_name %></td>
+			<td><%= student.email %></td>
+			<td>
+				<a href="/students/show/<%= student.id %>">Show</a> |
+        				<a href="/students/edit/<%= student.id %>">Edit</a> |
+        				<a href="/students/destroy/<%= student.id %>">Destroy</a>
+		
+			</td>
+		</tr>
+	<% end %>		
+	</tbody>
+</table>
+
+<%= link_to 'Home', dojos_path %>
+<a href="/students/new/">Add Student</a>

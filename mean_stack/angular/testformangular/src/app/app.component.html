@@ -1,0 +1,9 @@
+ <h1>US Time Zone Display</h1>
+
+<button (click)='showdate = getzone(-7,"pst")'  [ngClass]="{ 'red': pst}">PST</button>
+ <button (click)='showdate = getzone(-6,"mst")' [ngClass]="{ 'red':mst}">MST</button>
+<button (click)='showdate = getzone(-5,"cst")' [ngClass]="{ 'red':cst}">CST</button>
+<button (click)='showdate = getzone(-4,"est")' [ngClass]="{ 'red':est}">EST</button>
+ <button (click)='reset()'>reset</button>  
+
+ <h1>{{ showdate | date : 'MMM d, yyyy, hh:mm:ss a'}} </h1> 

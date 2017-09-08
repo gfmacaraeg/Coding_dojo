@@ -1,0 +1,4 @@
+<h1>PPM - Project Product Management</h1>
+<a [routerLink]="['/home']" >Home</a> <span> | </span> <a [routerLink]="['/products']">Product List</a> <span> | </span><a [routerLink]="['/create']">Product Creation</a>
+<br><br>
+<router-outlet (myEvent)="invoked()"></router-outlet>

@@ -1,0 +1,47 @@
+
+<a href [routerLink]="['/dashboard']">Go to Polls</a>
+
+<h1> {{ questiondata.question }}</h1>
+
+<p> Click the Vote button to choose one.</p>
+
+
+<table class="table table-bordered">
+                <tr>
+                    <th>Option</th>
+                    <th>Current Count of Votes</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                    <td>{{ questiondata.firstoption.optionname }}</td>
+                    <td>{{ questiondata.firstoption.vote }}</td>
+                    <td>
+                        <button href (click)="increasevote(questiondata._id, '1')">Vote</button>
+                  </td>
+                </tr>     
+
+                <tr>
+                    <td>{{ questiondata.secondoption.optionname }}</td>
+                    <td>{{ questiondata.secondoption.vote }}</td>
+                    <td>
+                        <button href (click)="increasevote(questiondata._id, '2')">Vote</button>
+                  </td>
+                </tr>      
+
+                 <tr>
+                    <td>{{ questiondata.thirdoption.optionname }}</td>
+                    <td>{{ questiondata.thirdoption.vote }}</td>
+                    <td>
+                        <button href (click)="increasevote(questiondata._id, '3')">Vote</button>
+                  </td>
+                </tr>      
+
+                 <tr>
+                    <td>{{ questiondata.fourthoption.optionname }}</td>
+                    <td>{{ questiondata.fourthoption.vote }}</td>
+                    <td>
+                     <button href (click)="increasevote(questiondata._id, '4')">Vote</button>
+                  </td>
+                </tr>      
+</table>

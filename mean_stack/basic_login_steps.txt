@@ -1,0 +1,181 @@
+set up for log in and registration:
+go to your repo
+> mkdir projectname   (login_reg)//make a new folder for project and go into new folder
+> npm init -y
+> npm install --save express
+> npm install --save ejs
+> npm install --save mongoose
+> npm install --save body-parser
+> npm install --save bcryptjs
+> mkdir client    //make two folders for the client and server side
+> mkdir server
+> touch server.js
+> atom .   //open project into your text editor (subl . or atom .)
+go into server.js file
+> let express = require('express');
+> let bp = require('body-parser');
+> let app = express();
+> app.use(express.static(__dirname + '/client/static'));
+create 2 folders: static and views (within your client folder under the project folder)
+> app.use(bp.urlencoded({extended: true}));
+//now setting up the view engine and the view directory
+> app.set('view engine', 'ejs');
+> app.set('views', __dirname + '/client/views');
+//turn on the server(these lines of code should always be at the bottom of ur file)
+> app.listen(8000, function(){
+    console.log('listening on port 8000');
+  })
+make 3 new folders inside the server folder: config, models, controllers
+in your config folder, create a mongoose.js  and routes.js file
+(still in the server.js file)
+> let mongoose = require('mongoose');
+> let fs = require('fs');
+//connect to the database
+> mongoose.connect('mongodb://localhost/login_reg', {useMongoClient: true});
+> mongoose.Promise = global.Promise;   //update the promise library
+> let models_path = __dirname + '/../models';   //establish the path to the models folder
+> fs.readdirSync(models_path).forEach(function(file){
+    if(file.includes('.js')){
+      console.log(`loading ${file}`);
+      require(`${models_path}/${file}`);
+    }
+  })
+create a user.js file in your models folder
+//now we are going to set up the mongoose connection file in your server.js file
+> require('./server/config/mongoose');
+create a users.js file in the controllers folder
+now lets build our user.js file under the models folder
+> let mongoose = require('mongoose');
+> let UserSchema = new mongoose.Schema({
+    first_name:{
+      type: String,
+      required: [true, 'First name cannot be blank']
+    },
+    last_name:{
+      type: String,
+      required: [true, 'Last name cannot be blank']
+    },
+    email:{
+      type: String,
+      required: [true, 'Email name cannot be blank']
+    },
+    birthday:{
+      type: Date,
+      required: [true, 'Birthday name cannot be blank']
+    },
+    password:{
+      type: String,
+      required: [true, 'Password name cannot be blank']
+    },
+    password_confirm:{
+      type: String,
+      required: [true, 'Password Confirmation name cannot be blank']
+    }
+  },{timestamps: true});
+// register the model
+> mongoose.model('User', UserSchema);
+create a users folder in your views folder under the client folder
+create a new.ejs file in the folder u just created before(users folder) and do a basic html set up
+now go into your users.js in the controllers folder
+> let mongoose = require('mongoose');
+> let User = mongoose.model('User');
+> module.exports = {
+    new: function(req, res){
+      return res.render('users/new.ejs');
+    }
+  }
+now go into your routes.js file in your config folder
+> let Users = require('../controllers/users');
+> module.exports = function(app){
+    app.get('/', Users.new);
+  }
+go to the views.js file under the server folder
+>require('./server/config/routes')(app);
+go to the new.ejs file under the users folder in the views folder and create the form
+<body>
+  <div class="container">
+    <div>
+      <h3>Register</h3>
+      <form action="/users" method="post">
+        <div>
+          <label>First Name</label>
+          <input type="text" name="first_name">
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input type="text" name="last_name">
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="text" name="email">
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" name="password">
+        </div>
+        <div>
+          <label>Password Confirmation</label>
+          <input type="password" name="password_confirm">
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <div>
+      <h3>Login</h3>
+      <form action="/sessions" method="post">
+        <div>
+          <label>Email</label>
+          <input type="text" name="email">
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" name="password">
+        </div>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</body>
+go back to the users.js file under the controller
+> let bcrypt = require('bcryptjs');   put this under the other 2 lets'
+put this under the module.exports, after the new: section
+> create: function(req, res){
+    User.create(req.body, function(err, user){
+      if(err){
+        console.log(err);
+      }else{
+        console.log('user saved')
+        console.log(user)
+        return res.redirect('/');
+      }
+    })
+  }
+}
+in your user.js folder under the models folder
+> UserSchema.pre('save', function(next){
+  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
+  next();
+})
+add to the routes.js under the config folder
+> app.post('/users', Users.create);
+in your user.js folder under the models folder
+> UserSchema.methods.authenticate= function(password){
+    return bcrypt.compareSync(password, this.password)
+  }
+go back to the users.js file under the controller
+put this under the module.exports, after the create: section
+> authenticate: function(req, res){
+    User.findOne({email: req.body.email}, function(err, user){
+      if(err){
+        console.log(err);
+      }
+      if(user && user.authenticate(req.body.password)){
+        console.log('user authenticated and redirected wherever');
+      } else{
+          console.log('generate JSON errors to send to angular');
+      }
+      return res.redirect('/');
+    })
+  }
+add to the routes.js under the config folder
+> app.post('/sessions', Users.authenticate);

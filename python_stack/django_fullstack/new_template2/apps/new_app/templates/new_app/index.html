@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Login and registration</title>
+  <meta charset="utf-8">
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+
+<h2>Registration</h2>
+{%if request.session.errors%}
+{%for i in request.session.errors%}
+  <p id = "error">{{i}}</p>
+ {%endfor%} 
+ {%endif%}
+<form action='/registration' method="post">
+{% csrf_token %}
+  First Name:<input type="text" name="firstname">
+  Last Name:<input type="text" name="lastname">
+  Email:<input type="text" name="email">
+  Password <input type="text" name="password">
+  Confirm Password:<input type="text" name="confirm">
+  <input type="submit" value="Register">
+</form>
+<br>
+<hr>
+<h2>Login</h2>
+<form action="/login" method="post">
+{% csrf_token %}
+  Email:<input type="text" name="email">
+  Password <input type="text" name="password">
+  <input type="submit" value="Login">
+</form>
+
+</body>
+</html>

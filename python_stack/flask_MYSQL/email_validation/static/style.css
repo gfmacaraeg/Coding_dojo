@@ -1,0 +1,14 @@
+#wrong{
+	background: red;
+	color: white;
+	height: 50px;
+	width: 500px;
+	text-align: center
+}
+#correct{
+	background: green;
+	color: black;
+	height: 50px;
+	width: 500px;
+	text-align: center
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<div id="header">
+		<p id="currgold">Your Gold:<input id="goldout" type="textbox" name="currgold" value="{{request.session.gold}}"></p>
+	</div>
+	<div class="main">
+		<p class="type">Farm</p>
+		<p class="earn">(earns 10 - 20 golds)</p>
+		<form action="/process_money" method="post">
+		{% csrf_token %}
+		  <input type="hidden" name="building" value="farm" />
+		  <input class="sub" type="submit" value="Find Gold!"/>
+		</form>
+
+	</div>
+	<div class="main">
+		<p class="type">Cave</p>
+		<p class="earn">(earns 5 - 10 golds)</p>
+		<form action="/process_money" method="post">
+		{% csrf_token %}
+		  <input type="hidden" name="building" value="cave" />
+		  <input class="sub" type="submit" value="Find Gold!"/>
+		</form>		
+	</div>
+	<div class="main">
+		<p class="type">House</p>
+		<p class="earn">(earns 2 - 5 golds)</p>
+		<form action="/process_money" method="post">
+		{% csrf_token %}
+		  <input type="hidden" name="building" value="house" />
+		  <input class="sub" type="submit" value="Find Gold!"/>
+		</form>		
+	</div>
+	<div class="main">
+		<p class="type">Casino</p>
+		<p class="earn">(earns/takes 0 - 50 golds)</p>
+		<form action="/process_money" method="post">
+		{% csrf_token %}
+		  <input type="hidden" name="building" value="casino" />
+		  <input class="sub" type="submit" value="Find Gold!"/>
+		</form>		
+	</div>
+	<p>Activities:</p>
+	<div id="textarea">
+	
+	<!-- <textarea> -->
+	{% for x in request.session.activities%}	
+	{{ x|safe }}
+	{% endfor %}
+	</div>
+<!-- 	</textarea> -->
+</body>
+</html>

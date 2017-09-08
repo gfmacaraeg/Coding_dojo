@@ -1,0 +1,7 @@
+<h1 style="text-align: center">Washington, DC</h1>
+<p>Humidity: {{weather.__zone_symbol__value.main.humidity}}</p>
+<p>Temperature(Average): {{((weather.__zone_symbol__value.main.temp - 273) * 1.8)+32 | number : '1.2-2'}}</p>
+<p>Temperature(High): {{((weather.__zone_symbol__value.main.temp_max - 273) * 1.8)+32 | number : '1.2-2'}}</p>
+<p>Temperature(Low): {{((weather.__zone_symbol__value.main.temp_min - 273) * 1.8)+32 | number : '1.2-2'}}</p>
+<p>Status: {{weather.__zone_symbol__value.weather[0].main}}</p>
+

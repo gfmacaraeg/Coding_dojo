@@ -1,0 +1,38 @@
+<div id="wrapper">
+<h1>Create a new product</h1>
+<form (submit)="createprod(product.title, product.price, product.image); myform.reset()" #myform="ngForm">
+	Title:
+	<input 
+	type="text" 
+	name="title"
+	required
+	minlength="4" 
+	[(ngModel)] = "product.title"
+	#title = "ngModel"
+	>
+	<span *ngIf="title.errors && title.errors.required && title.touched" style="color:red">Title is required</span>
+	<span *ngIf=" title.errors && title.errors.minlength && title.touched" style="color:red">Minimum length is 4 characters</span>
+	
+	<br><br>
+	Price:
+	<input 
+	type="text"
+	[(ngModel)] = "product.price"
+	#price = "ngModel"
+	required
+	name="newprice">
+	<span *ngIf="price.errors && price.errors.required && title.touched" style="color:red">Price is required</span>
+	
+	<br><br>
+	ImageUrl:
+	<input 
+	type="text" 
+	name="image"
+	[(ngModel)] = "product.image"
+	#image = "ngModel"
+	>
+	<br><br>
+	<input [disabled]="!myform.valid" type="submit" value="Create">
+</form>
+
+</div>

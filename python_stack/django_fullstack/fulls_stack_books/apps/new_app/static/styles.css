@@ -1,0 +1,24 @@
+h1{
+	text-align: center;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+table, th,td {
+    border: 1px solid black;
+}
+
+#title{
+	width: 700px;
+}
+.smaller{
+	width: 300px;
+	margin:10px;
+}
+#submit{
+	margin-top: 50px;
+	width: 200px;
+	font-size: 30px;
+}

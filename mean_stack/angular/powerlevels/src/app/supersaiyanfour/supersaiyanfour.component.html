@@ -1,0 +1,7 @@
+<div id="supersaiyanfour">
+<p>SuperSaiyanFour component</p>
+<p style="font-weight: bold">Power Level: {{power * 500}}</p>
+<p *ngIf="(power * 500) > 9000 && (power * 500) <= 20000" style="font-weight: bold">"Over 9000!</p>
+<p *ngIf="(power * 500) > 20000 && (power * 500) <= 50000" style="font-weight: bold">"Superlative!</p>
+<p *ngIf="(power * 500) > 50000" style="font-weight: bold">"The One!</p>
+</div>

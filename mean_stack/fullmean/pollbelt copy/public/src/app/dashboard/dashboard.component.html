@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <a href [routerLink]="['/create']">Create a new Poll</a>
+            <a href (click)="logout()">Logout</a>
+            <br>
+            <br>
+            <h2>Current Polls:</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Survey question</th>
+                    <th>Date Posted</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr *ngFor="let question of questions">
+                    <td>{{question.user.name}}</td>
+                    <td><a href href [routerLink]="['/answer', question._id]">{{question.question }}</a></td>
+                    <td>
+                         {{question.createdAt | date}}
+                    </td>
+                    <td>
+                        <button *ngIf="currentUser._id == question.user._id" href (click)=delete(question._id)>Delete</button>
+                       
+                  <!--   {{question.user  |json }} -->
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <router-outlet> </router-outlet>

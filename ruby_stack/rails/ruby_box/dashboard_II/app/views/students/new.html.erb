@@ -1,0 +1,25 @@
+<form action="/students/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+  <div>
+    <label>First Name:</label>
+    <input type="text" name="student[first_name]" />
+  </div>
+  <div>
+    <label>Last Name</label>
+    <input type="text" name="student[last_name]" />
+  </div>
+  <div>
+    <label>Email Address</label>
+    <input type="text" name="student[email]" />
+  </div>
+  <div>
+    <label>Dojo</label>
+
+    <select name="student[dojo_id]">
+    	<% @all_locations.each do |loc| %>
+    	<option  value=<%= loc.id %>> <%= loc.branch %></option>
+    	<% end %>
+    </select>
+  </div>
+  <input type="submit" value="Create" />
+</form>

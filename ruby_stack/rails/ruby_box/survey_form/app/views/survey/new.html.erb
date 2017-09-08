@@ -1,0 +1,34 @@
+<div id="container">
+	<form action='/survey' method='post'>
+    	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    	<div>
+    		<label>Your Name:</label>
+	    	<input type='text' name='survey[name]'>
+    	</div>
+	    <div>
+	    	<label>Dojo Location:</label>
+		    <select name="survey[location]" class="select">
+				<option value="Mountain Valley, Ca">Mountain Valley, SV</option>
+				<option value="San Diego, Ca">San Diego, Ca</option>
+				<option value="Seattle, Phoenix">Seattle, Pheonix</option>
+				<option value="San Jose, Ca">San Jose, Ca</option>
+			</select>
+	    </div>
+		<div>
+			<label>Favorite language:</label>
+			<select name="survey[language]" class="select">
+				<option value="Javascript">Javascript</option>
+				<option  value="PHP">PHP</option>
+				<option value="HTML">HTML</option>
+				<option value="CSS">CSS</option>
+			</select>
+		</div>
+		<div>
+			<label>Comment:</label>
+			<textarea rows="4" cols="35" name="survey[comment]"></textarea>
+		</div>
+		<div>
+			<input type='submit' value='Submit'>
+		</div>
+    </form>
+</div>    

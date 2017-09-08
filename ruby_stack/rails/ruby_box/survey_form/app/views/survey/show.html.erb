@@ -1,0 +1,33 @@
+<div id="container">
+	<% if flash[:success] %>
+  		<div id="success">
+  			<p><%= flash[:success] %></p>
+		</div>
+	<% end %>
+	<table id="survey_form">
+		<tr>
+			<td colspan='2'><strong><u>Submitted Information</u></strong></td>
+		</tr>
+		<tr>
+			<td>Name:</td>
+			<td><%= session[:result]['name'] %></td>
+		</tr>
+		<tr>
+			<td>Dojo Location:</td>
+			<td><%= session[:result]['location'] %></td>
+		</tr>
+		<tr>
+			<td>Favorite Language:</td>
+			<td><%= session[:result]['language'] %></td>
+		</tr>
+		<tr>
+			<td>Comment:</td>
+			<td><%= session[:result]['comment'] %></td>
+		</tr>
+		<tr>
+		    <td colspan="2" align="right">
+		    	<%= link_to "Go back", root_path %>
+		    </td>
+		</tr>
+	</table>
+</div>

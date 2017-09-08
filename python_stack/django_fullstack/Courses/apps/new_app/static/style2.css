@@ -1,0 +1,32 @@
+h2{
+	text-align: center;
+	
+}
+#wrapper{
+	height: 200px;
+	width: 600px;
+/*	background: grey;*/
+}
+form{
+	display: inline-block;
+}
+
+#no{
+	background: grey;
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: 40px;
+}
+
+
+#red{
+	margin-top: 40px;
+	background: red;
+	color: white;
+	font-size: 20px;
+	margin-left: 20px;
+}
+
+table {
+    width: 100%;
+}

@@ -1,0 +1,31 @@
+<a href [routerLink]="['/dashboard']">Home</a>
+<a href (click)="logout()">Logout</a>
+<h1>Put the question and options here:</h1>
+<div>
+    <form (submit)="createQuestion()" method="post" #myform="ngForm">
+    <div class="form-group">
+        <p *ngFor="let error of errors" class="error">{{ error }}</p>
+        <label>Question:</label>
+        <input type="text" name="question" class="form-control" [(ngModel)]="newQuestion.question"
+        >
+        
+        <div>
+            <label>Option 1:</label>
+            <input type="text" name="firstoption" class="form-control" [(ngModel)]="newQuestion.firstoption.optionname">
+            <br>
+            <label>Option 2:</label>
+            <input type="text" name="secondoption" class="form-control" [(ngModel)]="newQuestion.secondoption.optionname">
+            <br>
+            <label>Option 3:</label>
+            <input type="text" name="thirdoption" class="form-control" [(ngModel)]="newQuestion.thirdoption.optionname">
+            <br>
+            <label>Option 4:</label>
+            <input type="text" name="fourthoption" class="form-control" [(ngModel)]="newQuestion.fourthoption.optionname">
+            <br>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+            <button [routerLink]="['/dashboard']" type="button" class="btn btn-default">Cancel</button>
+        </div>    
+        </div>
+    </form>
+</div>

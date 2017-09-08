@@ -1,0 +1,27 @@
+<div>
+  <p *ngFor="let user of users">{{ user.name }}</p>
+</div>
+<button (click)="getUsers()">Get Users</button>
+<div>
+  <form (submit)="createUser(newUser); myForm.reset()" #myForm="ngForm">
+    <div>
+      <label>Name</label>
+      <input type="text" name="name" [(ngModel)]="newUser.name" #name="ngModel">
+    </div>
+    <div>
+      <label>Email</label>
+      <input type="text" name="email" [(ngModel)]="newUser.email" #email="ngModel">
+    </div>
+    <div>
+      <label>Password</label>
+      <input type="password" name="password" [(ngModel)]="newUser.password" #password="ngModel">
+    </div>
+    <div>
+      <label>Confirm Password</label>
+      <input type="password" name="password_confirmation" [(ngModel)]="newUser.password_confirmation" #password_confirmation="ngModel">
+    </div>
+    <input *ngIf="myForm.invalid" type="submit" disabled value="Submit">
+    <input *ngIf="password.value == password_confirmation.value" type="submit" value="Submit">
+  </form>
+  <p [ngStyle]="{'color': 'red'}" *ngFor="let error of error_msgs">{{ error }}</p>
+</div>

@@ -1,0 +1,182 @@
+<h1>Registration</h1>
+<div id="wrapper">
+<h2>Account Information</h2>
+<form (submit)="onSubmit()">
+    *First Name:
+    <input 
+    type="text" 
+    name="firstname"
+    required 
+    minlength="4" 
+    maxlength="24"
+    [(ngModel)]="user.firstname"
+    #firstname="ngModel">
+    <span *ngIf="firstname.errors && firstname.errors.required" class="error">First name is required</span>
+    <span *ngIf="firstname.errors && firstname.errors.minlength && (firstname.errors.minlength.actualLength < 4 && firstname.errors.minlength.actualLength > 0)" class="error">
+        Minimum length is 4 characters
+    </span>
+    <br>
+    
+    *Last Name:
+    <input 
+    type="text" 
+    name="lastname"
+    required
+    minlength="4" 
+    maxlength="24"
+    [(ngModel)]="user.lastname"
+    #lastname="ngModel"
+    >
+    <span *ngIf="lastname.errors && lastname.errors.required" class="error">Last name is required</span>
+    <span *ngIf="lastname.errors && lastname.errors.minlength && (lastname.errors.minlength.actualLength < 4 && lastname.errors.minlength.actualLength > 0)" class="error">
+        Minimum length is 4 characters
+    </span>
+    <br>
+
+     *Email Name:
+    <input 
+    type="text" 
+    name="email"
+    required 
+    minlength="4" 
+    maxlength="24"
+    pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+    [(ngModel)]="user.email"
+    #email="ngModel">
+    
+    <span *ngIf="email.errors && email.errors.required" class="error">Email is required</span>
+    
+    <span *ngIf="email.errors && email.errors.minlength && (email.errors.minlength.actualLength < 4 && email.errors.minlength.actualLength > 0)" class="error">
+        Minimum length is 4 characters
+    </span>
+    <span *ngIf="email.errors && email.errors.pattern && email.errors.pattern.requiredPattern" class="error">Please enter a valid email</span>  
+    <br>
+    
+    
+     *Password :
+    <input 
+    type="text" 
+    name="password" 
+    required 
+    minlength="16" 
+    maxlength="24"
+    pattern="^([a-zA-Z0-9@*#]{8,15})$"
+    [(ngModel)]="user.password"
+    #password='ngModel'
+    />
+    
+    <span *ngIf="password.errors && password.errors.required" class="error">Password is required</span>
+    <span *ngIf="password.errors && password.errors.minlength && (password.errors.minlength.actualLength < 16 && password.errors.minlength.actualLength > 0)" class="error">
+        Minimum length is 16 characters
+    </span>
+    <span *ngIf="password.errors && password.errors.pattern && password.errors.pattern.requiredPattern" class="error">Please enter a valid password</span>
+    <br>
+    
+    *Password Confirmation:
+    <input 
+    type="text" 
+    name="confirm"  
+    minlength="16" 
+    maxlength="24"
+    pattern="^([a-zA-Z0-9@*#]{8,15})$"
+    [(ngModel)]="user.confirm"
+    #confirm='ngModel'
+    />
+    <span *ngIf="user.password != user.confirm"class="error">Password Confrimations must match Password</span>
+    <br>
+
+    
+    *Street Address: 
+    <input 
+    type="text" 
+    name="street"
+    required
+    maxlength="50"
+    [(ngModel)]="user.street"
+    #street='ngModel'>
+    <span *ngIf="street.errors && street.errors.required" class="error">Street Address is required</span>
+
+    <br>
+     
+    Unit/Apt #: 
+    <input type="text" 
+    name="unit"
+    [(ngModel)]="user.street">
+    <br>
+    
+    *City: 
+    <input 
+    type="text" 
+    name="city"
+    required
+    maxlength="20"
+    [(ngModel)]="user.city"
+    #city='ngModel'>
+    <span *ngIf="city.errors && city.errors.required" class="error">City is required</span>
+    <br>
+    
+    *State 
+    <select
+    type="text" 
+    name="state"
+    [(ngModel)]="user.state"
+    #state='ngModel'>
+	<option value="AL">Alabama (AL)</option>
+	<option value="AK">Alaska (AK)</option>
+	<option value="AZ">Arizona (AZ)</option>
+	<option value="AR">Arkansas (AR)</option>
+	<option value="CA">California (CA)</option>
+	<option value="CO">Colorado (CO)</option>
+	<option value="CT">Connecticut (CT)</option>
+	<option value="DE">Delaware (DE)</option>
+	<option value="DC">District Of Columbia (DC)</option>
+	<option value="FL">Florida (FL)</option>
+	<option value="GA">Georgia (GA)</option>
+	<option value="HI">Hawaii (HI)</option>
+	<option value="ID">Idaho (ID)</option>
+	<option value="IL">Illinois (IL)</option>
+	<option value="IN">Indiana (IN)</option>
+	<option value="IA">Iowa (IA)</option>
+	<option value="KS">Kansas (KS)</option>
+	<option value="KY">Kentucky (KY)</option>
+	<option value="LA">Louisiana (LA)</option>
+	<option value="ME">Maine (ME)</option>
+	<option value="MD">Maryland (MD)</option>
+	<option value="MA">Massachusetts (MA)</option>
+	<option value="MI">Michigan (MI)</option>
+	<option value="MN">Minnesota (MN)</option>
+	<option value="MS">Mississippi (MS)</option>
+	<option value="MO">Missouri (MO)</option>
+	<option value="MT">Montana (MT)</option>
+	<option value="NE">Nebraska (NE)</option>
+	<option value="NV">Nevada (NV)</option>
+	<option value="NH">New Hampshire (NH)</option>
+	<option value="NJ">New Jersey (NJ)</option>
+	<option value="NM">New Mexico (NM)</option>
+	<option value="NY">New York (NY)</option>
+	<option value="NC">North Carolina (NC)</option>
+	<option value="ND">North Dakota (ND)</option>
+	<option value="OH">Ohio (OH)</option>
+	<option value="OK">Oklahoma (OK)</option>
+	<option value="OR">Oregon (OR)</option>
+	<option value="PA">Pennsylvania (PA)</option>
+	<option value="RI">Rhode Island (RI)</option>
+	<option value="SC">South Carolina (SC)</option>
+	<option value="SD">South Dakota (SD)</option>
+	<option value="TN">Tennessee (TN)</option>
+	<option value="TX">Texas (TX)</option>
+	<option value="UT">Utah (UT)</option>
+	<option value="VT">Vermont</option>
+	<option value="VA">Virginia</option>
+	<option value="WA">Washington</option>
+	<option value="WV">West Virginia</option>
+	<option value="WI">Wisconsin</option>
+    <option value="WY">Wyoming</option>
+    
+</select><br>
+<input type="submit" value="submit">
+</form>
+
+
+
+</div>

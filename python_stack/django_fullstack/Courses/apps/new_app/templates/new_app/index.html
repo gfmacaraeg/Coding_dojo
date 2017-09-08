@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<h1>Add a new course</h1>
+	<form action="/addcourse" method="post">
+	{% csrf_token %}
+		Name:<input id="name" type="text" name="name"><br>
+		Description:<input id="description" type="text" name="desc"><br>
+		<input id="submit" type="submit" value="Submit">
+	</form>
+	<br>
+	<table>
+		<tr>
+			<th>Courses</th>
+			<th>Description</th>
+			<th>DateAdded</th>
+			<th>Actions</th>
+		</tr>
+		{%for i in info%}
+			<tr>
+				<td>
+				{{i.name}}
+				</td>
+				<td>
+				{{i.content}}
+				</td>
+				<td>
+				{{i.date_added}}
+				</td>
+				<td>
+				<a href="/remove/{{i.id}}">remove</a>
+				</td>
+			</tr>
+		{%endfor%}
+		</table>
+</body>
+</html>

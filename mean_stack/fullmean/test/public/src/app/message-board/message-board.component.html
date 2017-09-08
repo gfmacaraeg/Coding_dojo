@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col">
+   	
+
+   	<h1>Hi, {{currentUser.name}}!</h1>
+	 <a routerLink='/newquestion'>Add a question</a>
+	 <table class="table table-bordered">
+ 	<tr>
+ 		<th>Question</th>
+ 		<th>Answers</th>
+ 		<th>Action</th>
+ 	</tr>
+ 	<tr *ngFor="let i of messages">
+ 		<td>{{i.question}}</td>
+
+ 		<td>{{i._id}}</td>
+ 		<td><a routerLink="/question/{{i._id}}">Show</a></td>
+ 	</tr>
+ </table>
+  
+
+{{messages | json}}
+  </div>
+</div>
+
+
+
+ 
+

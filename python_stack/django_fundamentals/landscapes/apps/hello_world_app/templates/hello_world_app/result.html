@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>Your random image for the day</h2>
+	{%if result%}
+	<p>You can only enter a value from 1- 50</p>
+	{%else%}
+	{% load staticfiles %}
+	<img width = "600" src="{% static '/lands/' %}{{image}}">
+	{%endif%}
+</body>
+</html>

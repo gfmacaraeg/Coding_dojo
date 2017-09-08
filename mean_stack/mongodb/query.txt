@@ -1,0 +1,35 @@
+> db.students.insert({name:"DirkNowitzki", home_state:"Dallas", lucky_number:18, birthday: ({month: 01, day: 20, year: 1820})})
+
+> db.students.insert({name:"LebronJames", home_state:"Cleveland", lucky_number:23, birthday: ({month: 01, day: 23, year: 1869})})
+
+> db.students.insert({name:"StephenCurry", home_state:"SanFrancisco", lucky_number:1, birthday: ({month: 06, day: 23, year: 1869})})
+
+> db.students.insert({name:"Kyrie", home_state:"Ohio", lucky_number:13, birthday: ({month: 08, day: 14, year: 1990})})
+
+> db.students.find({$or: [{home_state:"Dallas"},{home_state:"Ohio"}]})
+
+> db.students.find({lucky_number:{$gt: 3}})
+
+> db.students.find({lucky_number:{$lte: 3}})
+
+> db.students.find({lucky_number: {$gte:1,$lte:9}})
+
+> db.students.update({}, {$set: {"interest":["coding","brunch","MongoDB"]}},false,true)
+
+> db.students.update({name:"GianFranco"}, {$push: {"interest":"taxes"}})
+
+> db.students.update({name:"GianFranco"}, {$pop: {"interest": 1}})
+
+> db.students.remove({$or : [{home_state:"California"},{home_state:"Washington"}]})
+
+> db.students.remove({name:"Kyrie"})
+
+> db.students.update({}, {$set: {"number_of_belts":0}},false,true)
+
+db.students.update({home_state: "SanFrancisco"},{$inc:{number_of_belts:1}})
+
+> db.students.update({},{$rename:{number_of_belts:"belts_earned"}})
+
+> db.students.update({},{ $unset: { "lucky_number":""} })
+
+> db.students.update({},{ $set: { "updated_on": new Date() }})

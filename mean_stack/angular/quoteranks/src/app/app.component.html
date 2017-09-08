@@ -1,0 +1,44 @@
+<h1>Add a Quote</h1>
+<form (submit)="addquote(quote.content,quote.author); myform.reset() " #myform="ngForm">
+    <input 
+    id="quotebox" 
+    type="textbox"
+    minlength="4"
+    required
+    [(ngModel)]="quote.content"
+    #quote = "ngModel"
+    name="quote">
+    <span *ngIf="quote.errors && quote.errors.required && quote.touched" style="color:red">Quote is required
+        
+    </span>
+    <span *ngIf="quote.errors && quote.errors.minlength && quote.errors.minlength.actualLength > 0" style="color:red">Minimum length is 4 characters</span>
+    <br><br>
+    <span style="margin: 10px 0 0 200px">Author </span>
+    <input 
+    type="text" 
+    name="author"
+    required
+    [(ngModel)]="quote.author"
+    #author = "ngModel"
+    minlength="1">
+    <span *ngIf="author.errors && author.errors.required && author.touched" style="color:red">author is required</span>
+    <span *ngIf="author.errors && author.errors.minlength && author.errors.minlength.actualLength > 0" style="color:red">Minimum length is 1 characters</span>
+    <br><br>
+    <span style="margin: 10px 0 0 310px"></span>
+    <input [disabled]="!myform.valid" type="submit" value="Add Quote">
+</form>
+
+<h1>Quotes list</h1>
+
+<div *ngFor="let i of db; let idx = index" id="list">
+    <div id="para">
+        <p>{{i.content}}</p>
+        <p>-{{i.author}}</p>
+    </div>
+    <h1 id="count">{{i.votes}}</h1>
+    <div id="buttons">
+        <button (click)="addvote(idx)"id="up">Vote Up</button> 
+        <button (click)="subtractvote(idx)" id="down">Vote Down</button>
+        <button (click)="delete(idx)" id="delete">Delete</button>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing <%= @dojos.count %> Dojos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Branch</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dojos.each do |dojo| %>
+      <tr>
+        <td><%= dojo.branch %></td>
+        <td><%= dojo.street %></td>
+        <td><%= dojo.city %></td>
+        <td><%= dojo.state %></td>
+        <td><%= link_to 'Show', dojo %></td>
+        <td><%= link_to 'Edit', edit_dojo_path(dojo) %></td>
+        <td><%= link_to 'Destroy', dojo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dojo', new_dojo_path %>

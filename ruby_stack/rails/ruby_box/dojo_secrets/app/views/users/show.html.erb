@@ -1,0 +1,46 @@
+<%= link_to 'Logout', sessions_destroy_path %>
+<h4>Welcome, <%= current_user.first_name.titleize %></h4>
+
+<div class="row">
+<div class="col-1"></div>
+	<div class="col-10">
+		<% if flash[:errors] %>
+			<% flash[:errors].each do |message| %>
+			<p style="color:red"><%= message %></p>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-1"></div>
+	<!-- Register Form -->
+	<div class="col-5">
+		<form action="/secrets" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+			<div class="form-group">
+				<label for="first_name">What's your secret?:</label>
+				<textarea type="content" name="content" id="content" class="form-control"></textarea>
+				
+			</div>
+			<button type="submit" class="btn btn-primary">Create a secret</button>
+		</form>
+	</div>
+	
+	<div class="col-1"></div>
+</div>
+
+<div class="row">
+	<div class="col-1"></div>
+		<div class="col-5">
+			<h4>Secrets:</h4>
+			<% @user_secrets.each do |secret|%>
+			<p><%= secret.content %> <a href="/delete/<%= secret.id %>">Delete</a></p>
+			<% end %>
+
+		</div>
+	<div class="col-5">
+		
+	</div>
+</div>

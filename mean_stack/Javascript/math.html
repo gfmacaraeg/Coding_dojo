@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title>Javascript Demo</title>
+	<style>
+		
+	</style>
+</head>
+<body>
+    
+	<h1>Test</h1>
+    
+	 <script>
+	 	// arr = [1,2,3]
+	 	// math1
+	 	// function zero_negativity(arr){
+	 	// 	negative = false
+	 	// 	for(var i =0; i < arr.length; i++){
+	 	// 		if(arr[i] < 0){
+	 	// 			negative = true
+	 	// 		}
+	 	// 	}
+	 	// 	return negative
+	 	// }
+	 	// console.log(zero_negativity(arr))
+
+	 	// MATH2
+	 	// function is_even(num){
+	 	// 	even = false
+	 	// 	if (num % 2 == 0){
+	 	// 		even = true
+	 	// 	}
+	 	// 	return even
+	 	// }
+	 	// console.log(is_even(4))
+	 	// Math3
+	 	// function how_many_even(arr){
+	 	// 	num_even = 0
+	 	// 	for (var i = 0; i < arr.length; i++) {
+	 	// 		if(arr[i] % 2 == 0)
+	 	// 			num_even++
+	 	// 	}
+	 	// 	return num_even
+	 	// }
+	 	// console.log(how_many_even([1,2,3,4,5,6,7,8,9]))
+
+
+	 	// Math4
+	 	function shuffle(num){
+	 		list_shuffle = []
+	 		while(list_shuffle.length != 52) {
+	 			random = Math.floor(Math.random() * 52) +1
+	 			if (notIn(random, list_shuffle)){
+	 				list_shuffle.push(random)
+	 			}
+
+	 		}
+	 		return list_shuffle
+	 	}
+
+	 	console.log(shuffle(52))
+
+
+	 	function reset(){
+	 		new_deck = [];
+	 		for (var i = 1; i <= 52; i++) {
+		 	new_deck.push(i);
+		 	}
+		 	return new_deck
+	 	}
+
+	 	function deal_random(){
+	 		random = Math.floor(Math.random() * 52) +1
+	 		return random
+	 	}
+	 	// math5
+	 	// function random_choice(arr){
+	 	// 	i = Math.floor(Math.random() * arr.length)
+	 	// 	return arr[i]
+	 	// }
+	 	// console.log(random_choice([1,2,3,4,5]))
+
+	 	function notIn(value, dataset){
+	 		for(let item of dataset){
+	 			if(item == value){
+	 				return false;
+	 			}
+	 		}
+	 		return true;
+	 	}
+
+	</script>
+
+</body>
+</html>

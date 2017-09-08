@@ -1,0 +1,6 @@
+<h1>Dojo Weather Forecast</h1>
+ <span *ngFor="let i of cities">
+<a [routerLink]=i.link style="margin-right: 10px;">{{i.city}} </a > | </span> 
+<div id="wrapper">
+    <router-outlet></router-outlet>  
+</div>    

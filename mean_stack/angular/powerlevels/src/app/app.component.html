@@ -1,0 +1,24 @@
+<div id="wrapper">
+    <p>Power Component</p>
+    
+    <form (submit)="powerlevel(newgoku.power)">
+        Initial Power Level:
+        <select name="power" [(ngModel)]="newgoku.power" #power="ngModel">
+            <option *ngFor="let i of arr; let idx = index" value={{i}}>{{i}}</option>
+            
+        </select>
+        <input type="submit" value="Calculate Powers">
+        
+    </form>
+    <!-- {{power | json}} -->
+    
+    <img src="assets/goku2.jpg" width="200px;">
+    <div style="display: inline-block">
+    <app-human [power]="goku.power" style="display: inline-block"></app-human> 
+    <app-saiyan [power]="goku.power" style="display: inline-block"></app-saiyan>
+    <app-supersaiyan [power]="goku.power"></app-supersaiyan>
+    <app-supersaiyantwo [power]="goku.power"></app-supersaiyantwo>
+    <app-supersaiyanthree [power]="goku.power"></app-supersaiyanthree>
+    <app-supersaiyanfour [power]="goku.power"></app-supersaiyanfour>
+    </div>
+</div>

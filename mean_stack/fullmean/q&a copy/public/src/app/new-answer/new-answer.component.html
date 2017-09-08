@@ -1,0 +1,17 @@
+<h1> {{ question.question }}</h1>
+
+<p> {{ question.desc }}</p>
+
+<form (submit)="createAnswer()">
+    <label>Answer</label>
+    <textarea name="answer" [(ngModel)]="newAnswer.answer"></textarea>
+    <p *ngFor="let error of errors">{{ error }}</p>
+    <div>
+        <label>Details:</label>
+        <textarea name="details" [(ngModel)]="newAnswer.details"></textarea>
+        <br>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+        <button [routerLink]="['/dashboard']" type="button" class="btn btn-default">Cancel</button>
+    </div>
+</form>

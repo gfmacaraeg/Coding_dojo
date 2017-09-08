@@ -1,0 +1,18 @@
+/* .ng-invalid { };
+.ng-valid { };
+.ng-untouched { };
+.ng-touched { };
+.ng-dirty { };
+.ng-pristine { }; */
+h1{
+        text-align: center;
+
+};
+
+.but{
+height: 20px;
+width: 20px;
+}
+
+.red{ background: red; }
+.bold { font-weight: bold }

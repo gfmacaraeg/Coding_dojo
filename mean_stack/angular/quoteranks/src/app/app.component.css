@@ -1,0 +1,52 @@
+#quotebox{
+    height: 80px;
+    width: 400px;
+    
+}
+#list{
+    width: 800px;
+    border-style: solid;
+    height: 150px;
+    display: inline-block;
+    margin-bottom:5px;
+}
+#para{
+    height: 130px;
+    width: 530px;
+    /* background: grey; */
+    display: inline-block;
+    margin: 10px 10px 0 10px;
+}
+#count{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 55px;
+}
+#up{
+    vertical-align: top;
+    width: 150px;
+    height: 30px;
+    background: lightgreen;
+    display: inline-block;
+    margin-top:20px;
+}
+#down{
+     vertical-align: top; 
+    width: 150px;
+    height: 30px;
+    background: lightcoral;
+    margin-top: 10px;
+}
+#delete{
+     vertical-align: top; 
+    width: 150px;
+    height: 30px;
+    background:grey;
+    margin-top: 10px;
+}
+#buttons{
+    display: inline-block;
+    vertical-align: top;
+    width: 100px;
+    margin-left: 10px; 
+}
